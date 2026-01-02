@@ -1,0 +1,299 @@
+/* ======================================
+   🎨 Global Theme Variables
+====================================== */
+:root {
+  --beige-bg: #f8f4ee;
+  --gold-border: #d3b486;
+  --teal: #77d4c6;
+  --coral: #e98080;
+  --text-dark: #333;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* ======================================
+   📌 GLOBAL PAGE STYLES
+====================================== */
+body {
+  font-family: "Georgia", serif;
+  background-color: var(--beige-bg);
+  margin: 0;
+  padding: 0;
+  color: var(--text-dark);
+}
+
+h2 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 30px;
+}
+
+/* Wrapper container */
+.user-table-container {
+  width: 90%;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  border: 2px solid var(--gold-border);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+/* ======================================
+   🔎 SEARCH BAR + BUTTONS
+====================================== */
+.input-search {
+  width: 90%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.input-search input {
+  width: 350px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid var(--gold-border);
+  font-size: 16px;
+}
+
+.input-search button,
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease-in-out;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+/* Add Button */
+.input-search button {
+  background: var(--gold-border);
+  color: white;
+}
+
+/* ======================================
+   📍 TABLE STYLES
+====================================== */
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.users-table thead {
+  background-color: var(--beige-bg);
+  border-bottom: 3px solid var(--gold-border);
+}
+
+.users-table th,
+.users-table td {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.users-table tr:hover {
+  background: rgba(211, 180, 134, 0.15);
+}
+
+/* ======================================
+   ✔️ ACTION BUTTONS
+====================================== */
+.btn-edit {
+  background: var(--teal);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-right: 6px;
+}
+
+.btn-delete {
+  background: var(--coral);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+/* ======================================
+   📍 PAGINATION
+====================================== */
+.pagination {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.pagination button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 2px solid var(--gold-border);
+  background: white;
+  font-weight: bold;
+}
+
+.pagination span {
+  font-size: 18px;
+  margin: 0 10px;
+}
+
+/* ======================================
+   ➕ ADD / EDIT USER FORMS
+====================================== */
+form {
+  width: 420px;
+  background: white;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px solid var(--gold-border);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 4px 15px var(--shadow);
+}
+
+form input {
+  padding: 10px;
+  border: 2px solid var(--gold-border);
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+form button {
+  background: var(--teal);
+  color: white;
+}
+
+/* ======================================
+   💡 UTILITIES
+====================================== */
+.center {
+  text-align: center;
+}
+
+
+/* Search bar at top (matching palette) */
+.input-search {
+  margin: 5px auto;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.input-search input {
+  width: 350px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid var(--gold-border);
+  background: #ffffff;
+  outline: none;
+}
+
+.input-search button {
+  padding: 10px 18px;
+  background: var(--gold-border);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.input-search button:hover {
+  opacity: 0.9;
+}
+
+/* 🔍 Search Top Bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px auto;
+  margin-left: 18%;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+}
+
+.search-input {
+  padding: 10px 16px;
+  width: 680px;
+  border: 1px solid #bfa07a;
+  border-radius: 20px;
+  outline: none;
+  background: #fff;
+  font-size: 15px;
+}
+
+.search-btn {
+  background: #d7b58a;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.search-btn:hover {
+  background: #b9936c;
+}
+
+.add-btn {
+  background: var(--teal);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  transition: 0.2s;
+}
+
+.add-btn:hover {
+  background: #5fb8a8;
+}
+
+
+.user-top-container {
+  padding-top: 10px;
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 15px;
+}
+
+.error-box {
+  margin: 20px auto;
+  padding: 15px;
+  width: 90%;
+  max-width: 600px;
+  background: #ffe9e9;
+  color: #b30000;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.retry-btn {
+  margin-top: 10px;
+  background: #d7b58a;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
