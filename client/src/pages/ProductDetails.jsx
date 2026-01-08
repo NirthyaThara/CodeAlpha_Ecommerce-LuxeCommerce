@@ -131,7 +131,7 @@ const ProductDetails = () => {
                     {/* Image */}
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <img
-                            src={product.image_url ? `http://localhost:5000/uploads/${product.image_url}` : "https://via.placeholder.com/400"}
+                            src={product.image_url ? `${import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com"}/uploads/${product.image_url}` : "https://via.placeholder.com/400"}
                             alt={product.prod_name}
                             style={{
                                 width: "100%",
@@ -288,7 +288,7 @@ const ProductMiniCard = ({ p, isAdmin, navigate }) => (
         onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
     >
         <img
-            src={p.image_url ? `http://localhost:5000/uploads/${p.image_url}` : "https://via.placeholder.com/150"}
+            src={p.image_url ? `${import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com"}/uploads/${p.image_url}` : "https://via.placeholder.com/150"}
             alt={p.prod_name}
             style={{
                 width: "100%",

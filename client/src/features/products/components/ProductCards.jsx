@@ -47,7 +47,7 @@ const ProductCards = ({ products, handleEdit, handleDelete, isAdmin = true }) =>
     <div className="product-grid">
       {products.map((item) => {
         const imageSrc = item.image_url
-          ? `http://localhost:5000/uploads/${item.image_url}`
+          ? `${import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com"}/uploads/${item.image_url}`
           : "https://via.placeholder.com/300";
 
         const currentItem = cartItems.find(c => c.prod_id === item.prod_id);

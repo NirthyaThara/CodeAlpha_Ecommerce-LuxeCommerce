@@ -37,7 +37,7 @@ const EditProduct = () => {
 
         // existing image preview
         if (product.image) {
-          setPreview(`http://localhost:5000/uploads/${product.image}`);
+          setPreview(`${import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com"}/uploads/${product.image}`);
         }
 
         setLoading(false);
