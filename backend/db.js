@@ -3,29 +3,31 @@ require("dotenv").config();
 
 // Connection String
 const db = mysql.createPool({
-    host: process.env.DB_HOST || "localhost",
-    user: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD || "root",
-    database: process.env.DB_NAME || "ecommerce",
-    port: process.env.DB_PORT || 3306,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
     ssl: {
-        rejectUnauthorized: false
-    }
+        rejectUnauthorized: false,
+        ca: fs.readFileSync(path.resolve("ca.pem")),
+    },
+    connectTimeout: 10000,
 });
 
 // Test Connection
 (async () => {
     try {
         const connection = await db.getConnection();
-        console.log(`✅ Connected to Database: ${process.env.DB_NAME || "ecommerce"} on ${process.env.DB_HOST || "localhost"}:${process.env.DB_PORT || 3306}`);
+        console.log(`✅ Connected to Database: ${process.env.DB_NAME} on ${process.env.DB_HOST}:${process.env.DB_PORT}`);
         connection.release();
     }
     catch (error) {
         console.error("❌ MySQL Connection failed:", {
-            host: process.env.DB_HOST || "localhost",
-            port: process.env.DB_PORT || 3306,
-            user: process.env.DB_USER || "root",
-            database: process.env.DB_NAME || "ecommerce",
+            host: process.env.DB_HOST,
+            port: process.env.DB_PORT,
+            user: process.env.DB_USER,
+            database: process.env.DB_NAME,
             error: error.message
         });
     }
