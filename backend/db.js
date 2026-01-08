@@ -8,6 +8,7 @@ const db = mysql.createPool({
     user: process.env.DB_USER || "root",
     password: process.env.DB_PASSWORD || "root",
     database: process.env.DB_NAME || "ecommerce",
+    port: process.env.DB_PORT || 3306,
     ssl: {
         rejectUnauthorized: false
     }
@@ -17,12 +18,13 @@ const db = mysql.createPool({
 (async () => {
     try {
         const connection = await db.getConnection();
-        console.log(`✅ MySQL Server is running on host: ${process.env.DB_HOST || "localhost"}`);
+        console.log(`✅ Connected to Database: ${process.env.DB_NAME || "ecommerce"} on ${process.env.DB_HOST || "localhost"}:${process.env.DB_PORT || 3306}`);
         connection.release();
     }
     catch (error) {
-        console.error("❌ MySQL Conn failed:", {
+        console.error("❌ MySQL Connection failed:", {
             host: process.env.DB_HOST || "localhost",
+            port: process.env.DB_PORT || 3306,
             user: process.env.DB_USER || "root",
             database: process.env.DB_NAME || "ecommerce",
             error: error.message
