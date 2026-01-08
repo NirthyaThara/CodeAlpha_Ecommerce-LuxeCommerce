@@ -17,6 +17,7 @@ const allowedOrigins = [
    "http://localhost:5174",
    "http://localhost:5180",
    "https://codealpha-ecommerce-luxecommerce.onrender.com",
+   "https://luxecommerce.onrender.com",
    process.env.FRONTEND_URL // For flexibility with env variables
 ];
 

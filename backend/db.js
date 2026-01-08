@@ -17,11 +17,16 @@ const db = mysql.createPool({
 (async () => {
     try {
         const connection = await db.getConnection();
-        console.log("MySQL Server is running...");
+        console.log(`✅ MySQL Server is running on host: ${process.env.DB_HOST || "localhost"}`);
         connection.release();
     }
     catch (error) {
-        console.error("MySQL Conn failed :", error);
+        console.error("❌ MySQL Conn failed:", {
+            host: process.env.DB_HOST || "localhost",
+            user: process.env.DB_USER || "root",
+            database: process.env.DB_NAME || "ecommerce",
+            error: error.message
+        });
     }
 })();
 module.exports = db;
