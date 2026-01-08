@@ -1,39 +1,28 @@
-const fs = require("fs");
-const path = require("path");
 const mysql = require("mysql2/promise");
-require("dotenv").config();
+const fs = require("fs");
 
 const db = mysql.createPool({
-  host: process.env.DB_HOST,
+  host: process.env.DB_HOST,          // PUBLIC Aiven host only
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  port: Number(process.env.DB_PORT),
-
+  port: Number(process.env.DB_PORT),  // IMPORTANT
   ssl: {
-    // ca: fs.readFileSync(path.resolve("ca.pem")),
-    rejectUnauthorized: false,
+    ca: fs.readFileSync("/etc/secrets/ca.pem"),
   },
-
-  connectTimeout: 15000,
+  waitForConnections: true,
+  connectionLimit: 10,
+  connectTimeout: 20000,
 });
 
-// Test Connection
+// Test connection
 (async () => {
   try {
-    const connection = await db.getConnection();
-    console.log(
-      `✅ Connected to Database: ${process.env.DB_NAME} on ${process.env.DB_HOST}:${process.env.DB_PORT}`
-    );
-    connection.release();
-  } catch (error) {
-    console.error("❌ MySQL Connection failed:", {
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT,
-      user: process.env.DB_USER,
-      database: process.env.DB_NAME,
-      error: error.message,
-    });
+    const conn = await db.getConnection();
+    console.log("✅ MySQL connected on Render");
+    conn.release();
+  } catch (err) {
+    console.error("❌ MySQL FAILED", err);
   }
 })();
 
