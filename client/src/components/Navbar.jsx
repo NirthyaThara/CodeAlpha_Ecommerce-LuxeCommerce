@@ -19,6 +19,14 @@ const Navbar = () => {
         navigate("/register");
     };
 
+    const handleProtectedClick = (path) => {
+        if (user) {
+            navigate(path);
+        } else {
+            navigate("/login");
+        }
+    };
+
     return (
         <nav className="navbar">
             <div className="nav-logo">
@@ -49,18 +57,16 @@ const Navbar = () => {
 
                 <li>
                     <span
-                        onClick={() => user ? navigate("/cart") : navigate("/login")}
-                        style={{ cursor: "pointer" }}
-                        className="nav-link-protected"
+                        onClick={() => handleProtectedClick("/cart")}
+                        className="nav-link-item"
                     >
                         Cart 🛒
                     </span>
                 </li>
                 <li>
                     <span
-                        onClick={() => user ? navigate("/orders") : navigate("/login")}
-                        style={{ cursor: "pointer" }}
-                        className="nav-link-protected"
+                        onClick={() => handleProtectedClick("/orders")}
+                        className="nav-link-item"
                     >
                         Orders
                     </span>

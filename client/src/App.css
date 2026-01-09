@@ -396,8 +396,18 @@ form button:hover {
 }
 
 .nav-links li a:hover,
+.nav-link-item:hover,
 .dropdown-trigger:hover {
   color: var(--teal);
+}
+
+.nav-link-item {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 18px;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 /* Dropdown */
