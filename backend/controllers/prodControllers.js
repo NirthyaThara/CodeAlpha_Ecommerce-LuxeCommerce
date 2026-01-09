@@ -31,7 +31,7 @@ const getAllProd = async (req, res) => {
     const [prods] = await db.query(
       `
       SELECT prod_id, prod_name, prod_desc, sale_price, list_price,
-             category_name, created_by, stock, image_url
+             category_id, created_by, stock, image_url
       FROM Products
       ${whereClause}
       LIMIT ? OFFSET ?
@@ -61,7 +61,7 @@ const getProdById = async (req, res) => {
     const [prods] = await db.query(
       `
       SELECT p.prod_id, p.prod_name, p.prod_desc, p.sale_price, p.list_price,
-             p.category_name, p.created_by, p.stock, p.image_url,
+             p.category_id, p.created_by, p.stock, p.image_url,
              u.user_name AS creator_name
       FROM Products p
       LEFT JOIN Users u ON p.created_by = u.user_id
@@ -90,7 +90,7 @@ const createProd = async (req, res) => {
     const {
       prod_name,
       prod_desc,
-      category_name,
+      category_id, // Changed from category_name
       sale_price,
       list_price,
       created_by,
@@ -103,7 +103,7 @@ const createProd = async (req, res) => {
     if (
       !prod_name ||
       !prod_desc ||
-      !category_name ||
+      !category_id || // Changed from category_name
       !list_price ||
       !created_by ||
       stock == null
@@ -114,13 +114,13 @@ const createProd = async (req, res) => {
     const [result] = await db.query(
       `
       INSERT INTO Products
-      (prod_name, prod_desc, category_name, sale_price, list_price, created_by, stock, image_url)
+      (prod_name, prod_desc, category_id, sale_price, list_price, created_by, stock, image_url)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
       `,
       [
         prod_name,
         prod_desc,
-        category_name,
+        category_id,
         sale_price || null,
         list_price,
         created_by,
