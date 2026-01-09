@@ -12,14 +12,14 @@ const getAllUsers = async (req, res) => {
     const search = req.query.search || "";
     const offset = (page - 1) * limit;
 
-    let query = "SELECT user_id, user_name, email, role_id FROM Users";
+    let query = "SELECT user_id, user_name, email_id as email, role_id FROM Users";
     let countQuery = "SELECT COUNT(*) AS total FROM Users";
     let params = [];
     let countParams = [];
 
     if (search) {
-      query += " WHERE user_name LIKE ? OR email LIKE ?";
-      countQuery += " WHERE user_name LIKE ? OR email LIKE ?";
+      query += " WHERE user_name LIKE ? OR email_id LIKE ?";
+      countQuery += " WHERE user_name LIKE ? OR email_id LIKE ?";
       params.push(`%${search}%`, `%${search}%`);
       countParams = [...params];
     }
@@ -48,7 +48,7 @@ const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
     const [users] = await db.query(
-      "SELECT user_id, user_name, email, role_id FROM Users WHERE user_id = ?",
+      "SELECT user_id, user_name, email_id as email, role_id FROM Users WHERE user_id = ?",
       [id]
     );
 
@@ -72,7 +72,7 @@ const createUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const [result] = await db.query(
-      "INSERT INTO Users (user_name, email, password_hash, role_id) VALUES (?, ?, ?, ?)",
+      "INSERT INTO Users (user_name, email_id, passwrd, role_id) VALUES (?, ?, ?, ?)",
       [user_name, email, hashedPassword, role_id]
     );
 
@@ -97,7 +97,7 @@ const updateUser = async (req, res) => {
     const { user_name, email, role_id } = req.body;
 
     const [result] = await db.query(
-      "UPDATE Users SET user_name=?, email=?, role_id=? WHERE user_id=?",
+      "UPDATE Users SET user_name=?, email_id=?, role_id=? WHERE user_id=?",
       [user_name, email, role_id, id]
     );
 
@@ -140,7 +140,7 @@ const register = async (req, res) => {
     const hashed = await bcrypt.hash(password, 10);
 
     await db.query(
-      "INSERT INTO Users (user_name, email, password_hash, role_id) VALUES (?, ?, ?, 2)",
+      "INSERT INTO Users (user_name, email_id, passwrd, role_id) VALUES (?, ?, ?, 2)",
       [user_name, email, hashed]
     );
 
@@ -162,7 +162,7 @@ const login = async (req, res) => {
     if (!email || !password)
       return res.status(400).json({ message: "Email & password required" });
 
-    const [users] = await db.query("SELECT * FROM Users WHERE email=?", [email]);
+    const [users] = await db.query("SELECT * FROM Users WHERE email_id=?", [email]);
     console.log("Login Debug - Email:", email);
     console.log("Login Debug - Users Found:", users.length);
 
@@ -172,7 +172,7 @@ const login = async (req, res) => {
     }
 
     const user = users[0];
-    const match = await bcrypt.compare(password, user.password_hash);
+    const match = await bcrypt.compare(password, user.passwrd);
     console.log("Login Debug - Password Match:", match);
 
     if (!match) return res.status(401).json({ message: "Invalid credentials" });
