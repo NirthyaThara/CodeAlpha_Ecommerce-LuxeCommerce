@@ -30,7 +30,7 @@ const db = mysql.createPool({
     const [rows] = await db.query("SELECT 1");
     console.log("✅ MySQL connected to Aiven from Render");
   } catch (err) {
-    console.error("❌ MySQL connection failed:", err);
+    console.error("❌ MySQL connection failed to connect to aiven from render:", err);
   }
 })();
 
