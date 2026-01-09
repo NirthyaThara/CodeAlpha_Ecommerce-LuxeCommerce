@@ -1,5 +1,4 @@
 const mysql = require("mysql2/promise");
-const fs = require("fs");
 
 const db = mysql.createPool({
   host: process.env.DB_HOST,
@@ -8,24 +7,22 @@ const db = mysql.createPool({
   database: process.env.DB_NAME,
   port: Number(process.env.DB_PORT),
 
-  // 🔥 FORCE IPV4 (THIS FIXES ETIMEDOUT)
-  family: 4,
+  family: 4, // force IPv4
 
   ssl: {
-    ca: fs.readFileSync("/etc/secrets/ca.pem"),
+    rejectUnauthorized: false,
   },
 
+  connectTimeout: 30000,
   waitForConnections: true,
   connectionLimit: 10,
-  connectTimeout: 20000,
 });
 
-// Test
+// Test immediately
 (async () => {
   try {
-    const conn = await db.getConnection();
-    console.log("✅ MySQL connected on Render (IPv4 forced)");
-    conn.release();
+    const [rows] = await db.query("SELECT 1");
+    console.log("✅ MySQL connected to Aiven from Render");
   } catch (err) {
     console.error("❌ MySQL connection failed:", err);
   }
