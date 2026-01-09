@@ -77,7 +77,7 @@ const AdminOrders = () => {
                                         </span>
                                     </td>
                                     <td>
-                                        <button className="btn-edit">View</button>
+                                        <button className="btn-view">View</button>
                                     </td>
                                 </tr>
                             ))}

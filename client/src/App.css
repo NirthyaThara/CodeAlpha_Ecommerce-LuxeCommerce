@@ -191,32 +191,52 @@ h1 {
    🎛️ ACTION BUTTONS
 ====================================== */
 .btn-edit,
-.btn-delete {
-  padding: 8px 14px;
-  border-radius: 10px;
+.btn-delete,
+.btn-view {
+  padding: 10px 18px;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
   color: white;
   font-weight: 600;
-  transition: 0.25s;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
 }
 
 .btn-edit {
-  background: var(--teal);
+  background: #629c8e;
+  /* Subtle Teal */
 }
 
 .btn-edit:hover {
-  background: var(--teal-dark);
+  background: #4d7a6f;
   transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn-delete {
-  background: var(--coral);
+  background: #d9534f;
+  /* Coral/Red */
 }
 
 .btn-delete:hover {
-  background: var(--coral-dark);
+  background: #c9302c;
   transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-view {
+  background: #d3b486;
+  /* Gold/Beige */
+}
+
+.btn-view:hover {
+  background: #b9936c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* ======================================

@@ -47,8 +47,24 @@ const Navbar = () => {
                     )}
                 </li>
 
-                <li><Link to="/cart">Cart 🛒</Link></li>
-                <li><Link to="/orders">Orders</Link></li>
+                <li>
+                    <span
+                        onClick={() => user ? navigate("/cart") : navigate("/login")}
+                        style={{ cursor: "pointer" }}
+                        className="nav-link-protected"
+                    >
+                        Cart 🛒
+                    </span>
+                </li>
+                <li>
+                    <span
+                        onClick={() => user ? navigate("/orders") : navigate("/login")}
+                        style={{ cursor: "pointer" }}
+                        className="nav-link-protected"
+                    >
+                        Orders
+                    </span>
+                </li>
             </ul>
 
             <div className="nav-user">

@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Miniver&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-*{
-  font-family: 'Playfair Display',serif;
-  margin:0;
-  padding:0;
+
+* {
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -22,10 +24,10 @@
   background-position: calc(100% + 10px) calc(100% + 50px);
 
   background-repeat: no-repeat;
-  
+
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   transition: 0.3s ease;
   position: relative;
   cursor: pointer;
@@ -37,7 +39,7 @@
 
 /* OFFER BADGE */
 .offer-tag {
-  font-family:'Miniver',cursive;
+  font-family: 'Miniver', cursive;
   position: absolute;
   top: 14px;
   left: 14px;
@@ -45,8 +47,8 @@
   border: 2px dashed #d3b486;
   padding: 6px 5px;
   border-radius: 50%;
-  
-  transform:skewY(3);
+
+  transform: skewY(3);
   font-weight: bold;
   font-size: 15px;
   z-index: 2;
@@ -61,7 +63,7 @@
   justify-content: center;
   align-items: center;
   background: #fff;
-  
+
 }
 
 .product-image img {
@@ -84,19 +86,22 @@
 
 .product-desc {
 
-  height:0%;
+  height: 0%;
   font-size: 13px;
-  min-height:36px;
+  min-height: 36px;
   color: #555;
   /* margin: 0px 0; */
 
   display: -webkit-box;
-  -webkit-line-clamp: 2;   /* 👈 number of lines */
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  /* 👈 number of lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
 
   line-height: 1.4;
-  min-height: 40px; /* keeps card height consistent */
+  min-height: 40px;
+  /* keeps card height consistent */
 }
 
 
@@ -121,28 +126,10 @@
   border-top: 1px solid #ddd;
 }
 
+/* Standardized Actions (Uses App.css themes) */
 .btn-edit,
-.btn-delete {
-  padding: 8px 14px;
-  border-radius: 20px;
-  background: #fff;
-  border: 2px solid #d3b486;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.btn-edit:hover {
-  background: #d3b486;
-  color: white;
-}
-
-.btn-delete {
-  border-color: #d9534f;
-  color: #d9534f;
-}
-
-.btn-delete:hover {
-  background: #d9534f;
-  color: white;
+.btn-delete,
+.btn-view {
+  border-radius: 30px !important;
+  /* Keep the rounded shape for cards */
 }
