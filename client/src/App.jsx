@@ -106,11 +106,7 @@ function App() {
           <Route
             key={i}
             path={route.path}
-            element={
-              <PrivateRoute allowedRoles={[1]}>
-                {route.element}
-              </PrivateRoute>
-            }
+            element={route.element}
           />
         ))}
 
@@ -119,11 +115,7 @@ function App() {
           <Route
             key={i}
             path={route.path}
-            element={
-              <PrivateRoute allowedRoles={[1]}>
-                {route.element}
-              </PrivateRoute>
-            }
+            element={route.element}
           />
         ))}
 

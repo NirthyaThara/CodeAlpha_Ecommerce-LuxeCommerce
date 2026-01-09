@@ -4,7 +4,7 @@ import EditProduct from "./pages/EditProduct";
 import PrivateRoute from "../auth/components/PrivateRoute";
 
 export default [
-  { path: "/products", element: <PrivateRoute><ProductPage /></PrivateRoute> },
-  { path: "/products/add", element: <PrivateRoute><AddProduct /></PrivateRoute> },
-  { path: "/products/edit/:id", element: <PrivateRoute><EditProduct /></PrivateRoute> }
+  { path: "/products", element: <PrivateRoute adminOnly><ProductPage /></PrivateRoute> },
+  { path: "/products/add", element: <PrivateRoute adminOnly><AddProduct /></PrivateRoute> },
+  { path: "/products/edit/:id", element: <PrivateRoute adminOnly><EditProduct /></PrivateRoute> }
 ];

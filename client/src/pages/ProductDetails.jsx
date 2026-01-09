@@ -277,7 +277,7 @@ const ProductMiniCard = ({ p, isAdmin, navigate }) => {
     const backendUrl = (import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com").replace(/\/api\/?$/, "");
     return (
         <div
-            onClick={() => navigate(isAdmin ? `/admin/product/${p.prod_id}` : `/product/${p.prod_id}`)}
+            onClick={() => navigate(`/product/${p.prod_id}`)}
             style={{
                 cursor: "pointer",
                 border: "2px solid var(--gold-border)",

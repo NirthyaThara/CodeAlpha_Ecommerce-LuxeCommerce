@@ -59,7 +59,7 @@ const AddProduct = () => {
     try {
       await createProduct(formData);
       alert("Product Added Successfully");
-      navigate("/prod");
+      navigate("/products");
     } catch (err) {
       alert("Failed to add product: " + (err.response?.data?.message || err.message));
     }

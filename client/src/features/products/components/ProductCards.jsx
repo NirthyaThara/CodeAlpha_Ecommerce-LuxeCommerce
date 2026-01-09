@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "../pages/productStyles.css";
 import { addToCart, removeFromCart, getCart } from "../../../utils/cartUtils";
 import { updateCartItemAPI, removeFromCartAPI } from "../../../api/cartAPI";
 
 const ProductCards = ({ products, handleEdit, handleDelete, isAdmin = true }) => {
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   // Sync cart state
   const updateCartState = async () => {
@@ -65,7 +67,7 @@ const ProductCards = ({ products, handleEdit, handleDelete, isAdmin = true }) =>
             {/* Product Image */}
             <div
               className="product-image"
-              onClick={() => window.location.href = isAdmin ? `/admin/product/${item.prod_id}` : `/product/${item.prod_id}`}
+              onClick={() => navigate(`/product/${item.prod_id}`)}
               style={{ cursor: "pointer" }}
             >
               <img
@@ -78,7 +80,7 @@ const ProductCards = ({ products, handleEdit, handleDelete, isAdmin = true }) =>
             <div className="product-info">
               <h3
                 className="product-title"
-                onClick={() => window.location.href = isAdmin ? `/admin/product/${item.prod_id}` : `/product/${item.prod_id}`}
+                onClick={() => navigate(`/product/${item.prod_id}`)}
                 style={{ cursor: "pointer" }}
               >
                 {item.prod_name}

@@ -77,7 +77,7 @@ const getUserOrders = async (req, res) => {
 const getAllOrders = async (req, res) => {
     try {
         const [orders] = await db.query(
-            "SELECT o.order_id AS id, o.user_id, o.total_amount, o.status, o.created_at, u.user_name, u.email FROM Orders o JOIN Users u ON o.user_id = u.user_id ORDER BY o.created_at DESC"
+            "SELECT o.order_id AS id, o.user_id, o.total_amount, o.status, o.created_at, u.user_name, u.email_id AS email FROM Orders o JOIN Users u ON o.user_id = u.user_id ORDER BY o.created_at DESC"
         );
         res.json(orders);
     } catch (err) {
