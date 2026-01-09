@@ -18,6 +18,7 @@ const allowedOrigins = [
    "http://localhost:5180",
    "https://codealpha-ecommerce-luxecommerce.onrender.com",
    "https://luxecommerce.onrender.com",
+   "https://codealpha-ecommerce-luxecommerce-1.onrender.com", // Added from user error
    process.env.FRONTEND_URL // For flexibility with env variables
 ];
 
