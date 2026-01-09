@@ -41,7 +41,7 @@ function App() {
         />
 
         <Route
-          path="/admin/orders"
+          path="/orders/all"
           element={
             <PrivateRoute allowedRoles={[1]}>
               <AdminOrders />
@@ -50,28 +50,16 @@ function App() {
         />
 
         <Route
-          path="/admin/product/:id"
-          element={
-            <PrivateRoute allowedRoles={[1]}>
-              <ProductDetails />
-            </PrivateRoute>
-          }
-        />
-
-        {/* User */}
-        <Route
           path="/home"
           element={
-            // <PrivateRoute allowedRoles={[2]}>
             <UserHome />
-            // </PrivateRoute>
           }
         />
 
         <Route
           path="/product/:id"
           element={
-            <PrivateRoute allowedRoles={[2]}>
+            <PrivateRoute allowedRoles={[1, 2]}>
               <ProductDetails />
             </PrivateRoute>
           }

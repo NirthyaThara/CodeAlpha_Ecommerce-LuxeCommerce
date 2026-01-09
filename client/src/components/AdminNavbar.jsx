@@ -18,11 +18,11 @@ const AdminNavbar = () => {
                 <Link to="/admin">🛡️ Admin Panel</Link>
             </div>
 
-            <ul className="nav-links">
+            <ul className="nav-links" style={{ color: "white" }}>
                 <li><Link to="/admin">Home</Link></li>
                 <li><Link to="/users">Users</Link></li>
                 <li><Link to="/products">Products</Link></li>
-                <li><Link to="/admin/orders">Orders</Link></li>
+                <li><Link to="/orders/all">Orders</Link></li>
             </ul>
 
             <div className="nav-user">
