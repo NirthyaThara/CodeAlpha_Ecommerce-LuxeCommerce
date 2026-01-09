@@ -105,6 +105,21 @@ const setupDatabase = async () => {
             console.log("🌱 Default Roles Seeded");
         }
 
+        // 9. Insert Default Categories (if empty)
+        const [categories] = await connection.query("SELECT * FROM Category LIMIT 1");
+        if (categories.length === 0) {
+            await connection.query(`
+                INSERT INTO Category (category_id, category_desc) VALUES 
+                (1, 'Digital'),
+                (2, 'Stationery'),
+                (3, 'Art Supplies'),
+                (4, 'Fashion'),
+                (5, 'Accessories'),
+                (6, 'Seasonal Products')
+            `);
+            console.log("🌱 Default Categories Seeded");
+        }
+
         connection.release();
     } catch (error) {
         console.error("❌ Database Setup Failed:", error);

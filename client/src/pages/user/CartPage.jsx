@@ -112,7 +112,7 @@ const CartPage = () => {
                                 {cartItems.map((item) => {
                                     const price = parseFloat(item.sale_price || item.list_price || 0);
                                     const qty = item.quantity || 1;
-                                    const backendUrl = (import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com").replace(/\/api\/?$/, "");
+                                    const backendUrl = (import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_API_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com").replace(/\/api\/?$/, "");
                                     return (
                                         <tr key={item.prod_id}>
                                             <td>

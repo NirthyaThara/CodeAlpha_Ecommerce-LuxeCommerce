@@ -37,7 +37,7 @@ const EditProduct = () => {
         });
 
         if (product.image_url) {
-          const backendUrl = (import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com").replace(/\/api\/?$/, "");
+          const backendUrl = (import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_API_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com").replace(/\/api\/?$/, "");
           setPreview(`${backendUrl}/uploads/${product.image_url}`);
         }
 

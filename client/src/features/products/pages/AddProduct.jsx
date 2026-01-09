@@ -4,6 +4,7 @@ import { createProduct } from "../../../api/prodAPI";
 
 const AddProduct = () => {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const [form, setForm] = useState({
     prod_name: "",
@@ -12,7 +13,7 @@ const AddProduct = () => {
     sale_price: "",
     list_price: "",
     stock: "",
-    created_by: 1
+    created_by: user?.user_id || 1
   });
 
   const [image, setImage] = useState(null); // 📌 for uploaded file

@@ -131,7 +131,7 @@ const ProductDetails = () => {
                     {/* Image */}
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <img
-                            src={product.image_url ? `${(import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com").replace(/\/api\/?$/, "")}/uploads/${product.image_url}` : "https://via.placeholder.com/400"}
+                            src={product.image_url ? `${(import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_API_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com").replace(/\/api\/?$/, "")}/uploads/${product.image_url}` : "https://via.placeholder.com/400"}
                             alt={product.prod_name}
                             style={{
                                 width: "100%",
@@ -274,7 +274,7 @@ const Section = ({ title, children }) => (
 );
 
 const ProductMiniCard = ({ p, isAdmin, navigate }) => {
-    const backendUrl = (import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com").replace(/\/api\/?$/, "");
+    const backendUrl = (import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_API_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com").replace(/\/api\/?$/, "");
     return (
         <div
             onClick={() => navigate(`/product/${p.prod_id}`)}
