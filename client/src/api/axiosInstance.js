@@ -3,7 +3,8 @@ import axios from "axios";
 const getBaseURL = () => {
   const envUrl = import.meta.env.VITE_API_URL;
   if (!envUrl) return "https://codealpha-ecommerce-luxecommerce.onrender.com/api";
-  return envUrl.endsWith("/api") ? envUrl : `${envUrl}/api`;
+  const normalizedUrl = envUrl.replace(/\/+$/, ""); // Remove trailing slashes
+  return normalizedUrl.endsWith("/api") ? normalizedUrl : `${normalizedUrl}/api`;
 };
 
 const axiosInstance = axios.create({
