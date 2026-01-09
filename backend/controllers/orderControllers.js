@@ -22,7 +22,7 @@ const createOrder = async (req, res) => {
 
         // 1. Create Order Record
         const [orderResult] = await connection.query(
-            "INSERT INTO orders (user_id, total_amount, status) VALUES (?, ?, 'Processing')",
+            "INSERT INTO Orders (user_id, total_amount, status) VALUES (?, ?, 'Processing')",
             [userId, total_amount]
         );
         const orderId = orderResult.insertId;
@@ -37,13 +37,13 @@ const createOrder = async (req, res) => {
         ]);
 
         await connection.query(
-            "INSERT INTO order_items (order_id, prod_id, quantity, price) VALUES ?",
+            "INSERT INTO Order_Items (order_id, prod_id, quantity, price) VALUES ?",
             [orderItems]
         );
         console.log("Order Items Inserted in DB");
 
         // 3. Clear User's Cart
-        await connection.query("DELETE FROM cart WHERE user_id = ?", [userId]);
+        await connection.query("DELETE FROM Cart WHERE user_id = ?", [userId]);
         console.log("Cart Cleared for User:", userId);
 
         await connection.commit();
@@ -64,7 +64,7 @@ const getUserOrders = async (req, res) => {
     try {
         const userId = req.user.id;
         const [orders] = await db.query(
-            "SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC",
+            "SELECT * FROM Orders WHERE user_id = ? ORDER BY created_at DESC",
             [userId]
         );
         res.json(orders);
@@ -77,7 +77,7 @@ const getUserOrders = async (req, res) => {
 const getAllOrders = async (req, res) => {
     try {
         const [orders] = await db.query(
-            "SELECT o.order_id AS id, o.user_id, o.total_amount, o.status, o.created_at, u.user_name, u.email FROM orders o JOIN Users u ON o.user_id = u.user_id ORDER BY o.created_at DESC"
+            "SELECT o.order_id AS id, o.user_id, o.total_amount, o.status, o.created_at, u.user_name, u.email FROM Orders o JOIN Users u ON o.user_id = u.user_id ORDER BY o.created_at DESC"
         );
         res.json(orders);
     } catch (err) {

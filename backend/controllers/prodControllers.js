@@ -30,9 +30,11 @@ const getAllProd = async (req, res) => {
     // Fetch products
     const [prods] = await db.query(
       `
-      SELECT prod_id, prod_name, prod_desc, sale_price, list_price,
-             category_id, created_by, stock, image_url
-      FROM Products
+      SELECT p.prod_id, p.prod_name, p.prod_desc, p.sale_price, p.list_price,
+             p.category_id, p.created_by, p.stock, p.image_url,
+             c.category_desc AS category_name
+      FROM Products p
+      LEFT JOIN Category c ON p.category_id = c.category_id
       ${whereClause}
       LIMIT ? OFFSET ?
       `,
@@ -62,9 +64,11 @@ const getProdById = async (req, res) => {
       `
       SELECT p.prod_id, p.prod_name, p.prod_desc, p.sale_price, p.list_price,
              p.category_id, p.created_by, p.stock, p.image_url,
-             u.user_name AS creator_name
+             u.user_name AS creator_name,
+             c.category_desc AS category_name
       FROM Products p
       LEFT JOIN Users u ON p.created_by = u.user_id
+      LEFT JOIN Category c ON p.category_id = c.category_id
       WHERE p.prod_id = ?
       `,
       [id]

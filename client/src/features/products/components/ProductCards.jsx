@@ -46,8 +46,9 @@ const ProductCards = ({ products, handleEdit, handleDelete, isAdmin = true }) =>
   return (
     <div className="product-grid">
       {products.map((item) => {
+        const backendUrl = (import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com").replace(/\/api\/?$/, "");
         const imageSrc = item.image_url
-          ? `${import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com"}/uploads/${item.image_url}`
+          ? `${backendUrl}/uploads/${item.image_url}`
           : "https://via.placeholder.com/300";
 
         const currentItem = cartItems.find(c => c.prod_id === item.prod_id);
