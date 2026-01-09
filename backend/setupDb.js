@@ -111,30 +111,6 @@ const setupDatabase = async () => {
             console.log("✅ Default Roles Inserted");
         }
 
-        // 9. Insert Default Categories (if empty)
-        const [categories] = await connection.query("SELECT * FROM Category LIMIT 1");
-        if (categories.length === 0) {
-            await connection.query(`
-                INSERT INTO Category (category_id, category_desc) VALUES 
-                (1, 'Electronics'),
-                (2, 'Fashion'),
-                (3, 'Home & Living')
-            `);
-            console.log("✅ Default Categories Inserted");
-        }
-
-        // 10. Insert Default Products (if empty) - Only if categories exist
-        const [products] = await connection.query("SELECT * FROM Products LIMIT 1");
-        if (products.length === 0) {
-            await connection.query(`
-                INSERT INTO Products (prod_name, prod_desc, category_id, sale_price, list_price, stock, image_url) VALUES 
-                ('Premium Smartphone', 'Latest 5G smartphone with pure black finish.', 1, 899.99, 999.99, 50, 'phone.jpg'),
-                ('Leather Jacket', 'Genuine leather jacket, perfect for all seasons.', 2, 199.99, 299.99, 20, 'jacket.jpg'),
-                ('Smart Coffee Maker', 'Brew coffee with your voice assistant.', 3, 129.99, 159.99, 15, 'coffee.jpg')
-            `);
-            console.log("✅ Default Products Inserted");
-        }
-
         connection.release();
     } catch (error) {
         console.error("❌ Database Setup Failed:", error);

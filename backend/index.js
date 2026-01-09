@@ -57,7 +57,7 @@ app.use("/api/cart", require("./routes/cartRoutes"));
 app.use("/api/orders", require("./routes/orderRoutes"));
 
 // Run DB Setup
-require("./setupDb")();
+// require("./setupDb")(); // Disabled per user request (Using existing Aiven DB)
 
 app.get("/", (req, res) => {
    res.json({ message: "API is running" });
