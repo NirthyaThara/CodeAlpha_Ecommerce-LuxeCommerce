@@ -83,6 +83,7 @@ const createUser = async (req, res) => {
 
   } catch (err) {
     if (err.code === "ER_DUP_ENTRY") return res.status(409).json({ message: "Email already exists" });
+    console.error("❌ Register Error:", err); // Added debug log
     res.status(500).json({ message: err.message });
   }
 };
@@ -147,6 +148,7 @@ const register = async (req, res) => {
 
   } catch (err) {
     if (err.code === "ER_DUP_ENTRY") return res.status(409).json({ message: "Email already exists" });
+    console.error("❌ Register Error:", err); // Added debug log
     res.status(500).json({ message: err.message });
   }
 };
@@ -164,7 +166,10 @@ const login = async (req, res) => {
     console.log("Login Debug - Email:", email);
     console.log("Login Debug - Users Found:", users.length);
 
-    if (!users.length) return res.status(401).json({ message: "Invalid credentials" });
+    if (!users.length) {
+      console.error("❌ Login Failed: User not found");
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
 
     const user = users[0];
     const match = await bcrypt.compare(password, user.password_hash);
