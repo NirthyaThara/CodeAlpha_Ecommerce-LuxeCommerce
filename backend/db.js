@@ -12,7 +12,7 @@ const db = mysql.createPool({
   family: 4,
 
   ssl: {
-    ca: fs.readFileSync("\ca.pem"),
+    ca: fs.readFileSync("/etc/secrets/ca.pem"),
   },
 
   waitForConnections: true,
