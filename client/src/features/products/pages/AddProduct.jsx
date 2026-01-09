@@ -34,19 +34,35 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();  // 💡 MUST use FormData for images
+    const categoryMap = {
+      "Digital": 1,
+      "Stationery": 2,
+      "Art Supplies": 3,
+      "Fashion": 4,
+      "Accessories": 5,
+      "Seasonal Products": 6
+    };
+
+    const formData = new FormData();
     Object.keys(form).forEach((key) => {
-      formData.append(key, form[key]);
+      if (key === 'category_name') {
+        formData.append('category_id', categoryMap[form[key]] || 1);
+      } else {
+        formData.append(key, form[key]);
+      }
     });
 
     if (image) {
       formData.append("image", image);
     }
 
-    await createProduct(formData);
-
-    alert("Product Added Successfully");
-    navigate("/prod");
+    try {
+      await createProduct(formData);
+      alert("Product Added Successfully");
+      navigate("/prod");
+    } catch (err) {
+      alert("Failed to add product: " + (err.response?.data?.message || err.message));
+    }
   };
 
   return (

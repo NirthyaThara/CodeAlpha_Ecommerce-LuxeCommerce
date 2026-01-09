@@ -131,7 +131,7 @@ const ProductDetails = () => {
                     {/* Image */}
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <img
-                            src={product.image_url ? `${import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com"}/uploads/${product.image_url}` : "https://via.placeholder.com/400"}
+                            src={product.image_url ? `${(import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com").replace(/\/api\/?$/, "")}/uploads/${product.image_url}` : "https://via.placeholder.com/400"}
                             alt={product.prod_name}
                             style={{
                                 width: "100%",
@@ -273,34 +273,37 @@ const Section = ({ title, children }) => (
     </div>
 );
 
-const ProductMiniCard = ({ p, isAdmin, navigate }) => (
-    <div
-        onClick={() => navigate(isAdmin ? `/admin/product/${p.prod_id}` : `/product/${p.prod_id}`)}
-        style={{
-            cursor: "pointer",
-            border: "2px solid var(--gold-border)",
-            borderRadius: "12px",
-            padding: "10px",
-            background: "white",
-            transition: "0.3s",
-        }}
-        onMouseOver={(e) => (e.target.style.transform = "scale(1.02)")}
-        onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
-    >
-        <img
-            src={p.image_url ? `${import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com"}/uploads/${p.image_url}` : "https://via.placeholder.com/150"}
-            alt={p.prod_name}
+const ProductMiniCard = ({ p, isAdmin, navigate }) => {
+    const backendUrl = (import.meta.env.VITE_BACKEND_URL || "https://codealpha-ecommerce-luxecommerce.onrender.com").replace(/\/api\/?$/, "");
+    return (
+        <div
+            onClick={() => navigate(isAdmin ? `/admin/product/${p.prod_id}` : `/product/${p.prod_id}`)}
             style={{
-                width: "100%",
-                height: "150px",
-                objectFit: "cover",
-                borderRadius: "8px",
-                marginBottom: "10px",
+                cursor: "pointer",
+                border: "2px solid var(--gold-border)",
+                borderRadius: "12px",
+                padding: "10px",
+                background: "white",
+                transition: "0.3s",
             }}
-        />
-        <h4>{p.prod_name}</h4>
-        <p style={{ color: "var(--teal)", fontWeight: "bold" }}>₹{p.sale_price || p.list_price}</p>
-    </div>
-);
+            onMouseOver={(e) => (e.target.style.transform = "scale(1.02)")}
+            onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+        >
+            <img
+                src={p.image_url ? `${backendUrl}/uploads/${p.image_url}` : "https://via.placeholder.com/150"}
+                alt={p.prod_name}
+                style={{
+                    width: "100%",
+                    height: "150px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                    marginBottom: "10px",
+                }}
+            />
+            <h4>{p.prod_name}</h4>
+            <p style={{ color: "var(--teal)", fontWeight: "bold" }}>₹{p.sale_price || p.list_price}</p>
+        </div>
+    );
+};
 
 export default ProductDetails;
