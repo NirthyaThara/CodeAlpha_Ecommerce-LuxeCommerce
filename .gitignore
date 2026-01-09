@@ -40,9 +40,9 @@ Thumbs.db
 logs/
 *.log
 
-# Uploads (unless you want to track them)
-backend/uploads/*
-!backend/uploads/.gitkeep
+# Uploads (tracked for deployment)
+# backend/uploads/*
+# !backend/uploads/.gitkeep
 
 # Database
 *.sqlite
