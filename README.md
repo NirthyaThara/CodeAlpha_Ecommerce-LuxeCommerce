@@ -10,6 +10,15 @@ A comprehensive e-commerce application featuring a modern React frontend, a robu
 **Frontend & API**: [https://luxecommerce.onrender.com](https://luxecommerce.onrender.com)
 
 ---
+##Credentials:
+##Admin:
+-**Email**:admin@gmail.com
+-**Password**:admin@123
+
+##User:
+-**Email**:john@gmail.com
+-**Password**:john@123
+-**Or you can register new user **
 
 ## 🛠️ Technical Overview
 LuxeCommerce is a modern, full-stack e-commerce platform built with a decoupled architecture.
